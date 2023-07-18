@@ -4,7 +4,7 @@ This is a WordPress plugin that caches the `.mo` file in a transient to speed up
 
 ## Prerequisites
 
-WordPress 6.3 or later
+WordPress 6.3, I'm using the `pre_load_textdomain` filter, or later.
 
 ## Installation
 
