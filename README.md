@@ -8,19 +8,24 @@ WordPress 6.3 or later
 
 ## Installation
 
-Download the plugin files and extract `wp-cache-textdomain.php` to the `wp-content/mu-plugins` directory.
+1. Download the plugin files and extract `wp-cache-textdomain.php` to the `wp-content/mu-plugins` directory.
+2. Optional, add an object cache to your WordPress installation.
 
 ## Usage
 
 The plugin automatically caches the `.mo` file in a transient when it is loaded, and retrieves the cached data when the same file is loaded again. This speeds up the loading of text domains in WordPress.
 
-## Contributing
+## Frequently Asked Questions
 
-Contributions are welcome! Please submit a pull request or open an issue on the [GitHub repository](https://github.com/soderlind/wp-cache-textdomain).
+### How do I add an object cache?
 
-## License
+You can add an object cache by installing a caching plugin like
 
-This plugin is licensed under the GPLv2 or later.
+- [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/)
+- [Redis Object Cache](https://wordpress.org/plugins/redis-cache/)
+- [Object Cache Pro](https://objectcache.pro/)
+
+I use Object Cache Pro, it's a premium plugin, but it's worth every penny.
 
 ## Credits
 
