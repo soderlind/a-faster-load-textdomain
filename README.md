@@ -2,10 +2,13 @@
 
 This is a WordPress plugin that caches the `.mo` file in a transient to speed up the loading of text domains.
 
+## Prerequisites
+
+WordPress 6.3 or later
+
 ## Installation
 
-1. Download the plugin files and extract them to the `wp-content/mu-plugins` directory.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
+Download the plugin files and extract `wp-cache-textdomain.php` to the `wp-content/mu-plugins` directory.
 
 ## Usage
 
@@ -22,3 +25,11 @@ This plugin is licensed under the GPLv2 or later.
 ## Credits
 
 This plugin is based on a patch by [nicofuma](https://core.trac.wordpress.org/ticket/32052).
+
+## Copyright and License
+
+This plugin is copyright © 2023 [Per Soderlind](http://soderlind.no).
+
+This plugin is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 2, as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See [LICENSE](LICENSE) for more information.
