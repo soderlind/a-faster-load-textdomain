@@ -1,0 +1,7 @@
+.phpunit.cache
+tests
+tests/**
+tests/phpunit/tests/test-wp-cache-textdomain.php
+vendor
+vendor/**
+phpunit.xml

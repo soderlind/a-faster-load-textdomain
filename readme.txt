@@ -1,6 +1,6 @@
 === Plugin Name ===
-Contributors: Your Name
-Tags: plugin, feature
+Contributors: PerS
+Tags: l10n, load_textdomain, cache, transient
 Requires at least: 6.3
 Tested up to: 6.3
 Stable tag: 1.0.0
