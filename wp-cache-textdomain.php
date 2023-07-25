@@ -36,16 +36,26 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 
 	// If the data is not in the cache or if the file has been modified since the data was cached,
 	// import the .mo file and store the data in the cache.
+
+	// Create a new MO object.
 	$mo = new MO();
+
+	// Check if the data is already in the cache and if it is up-to-date.
 	if ( ! $data || ! isset( $data['mtime'] ) || $mtime > $data['mtime'] ) {
+		// If the data is not in the cache or is outdated, import the .mo file into the MO object.
 		if ( ! $mo->import_from_file( $mofile ) ) {
+			// If the import fails, return false.
 			return false;
 		}
+
+		// Store the entries and headers from the MO object in an array with the modification time.
 		$data = [
 			'mtime'   => $mtime,
 			'entries' => $mo->entries,
 			'headers' => $mo->headers,
 		];
+
+		// Store the data in a transient with the MD5 hash of the .mo file path as the key.
 		if ( is_multisite() ) {
 			set_site_transient( md5( $mofile ), $data );
 		} else {
