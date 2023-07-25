@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 1.0.0
+ * Version: 1.0.1
  * Description: Cache the .mo file in a transient
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
@@ -30,9 +30,8 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 	if ( ! is_readable( $mofile ) ) {
 		return false;
 	}
-
 	// Check if the data for the file is already in the transient cache.
-	$data  = get_transient( md5( $mofile ) );
+	$data  = ( ( is_multisite() ) ) ? get_site_transient( md5( $mofile ) ) : get_transient( md5( $mofile ) );
 	$mtime = filemtime( $mofile );
 
 	// If the data is not in the cache or if the file has been modified since the data was cached,
@@ -47,7 +46,11 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 			'entries' => $mo->entries,
 			'headers' => $mo->headers,
 		];
-		set_transient( md5( $mofile ), $data );
+		if ( is_multisite() ) {
+			set_site_transient( md5( $mofile ), $data );
+		} else {
+			set_transient( md5( $mofile ), $data );
+		}
 	} else {
 		// If the data is already in the cache and the file has not been modified, retrieve the data from the cache.
 		$mo->entries = $data['entries'];
