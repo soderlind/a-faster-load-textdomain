@@ -3,7 +3,7 @@ Contributors: PerS
 Tags: l10n, load_textdomain, cache, transient
 Requires at least: 6.3
 Tested up to: 6.3
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,10 +32,9 @@ You can add an object cache by installing a caching plugin like
 
 == Changelog ==
 
+= 1.0.1 =
+* Add multisite support
+
 = 1.0.0 =
 * Initial release
 
-== Upgrade Notice ==
-
-= 1.0.0 =
-Initial release
