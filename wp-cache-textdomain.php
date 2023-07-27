@@ -59,10 +59,10 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 		];
 
 		// Store the data in a transient with the MD5 hash of the .mo file path as the key.
-		if ( is_multisite() ) {
-			set_site_transient( $hash, $data );
+		if ( \is_multisite() ) {
+			\set_site_transient( $hash, $data );
 		} else {
-			set_transient( $hash, $data );
+			\set_transient( $hash, $data );
 		}
 	} else {
 		// If the data is already in the cache and the file has not been modified, retrieve the data from the cache.
