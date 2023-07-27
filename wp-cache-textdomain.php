@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 1.0.1
+ * Version: 1.0.2
  * Description: Cache the .mo file in a transient
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
@@ -13,32 +13,35 @@
  * @package wp-cache-textdomain
  */
 
+declare( strict_types = 1 );
+namespace Soderlind\Plugin\WP_Cache_Textdomain;
+
 /**
- * Load the .mo file from the transient cache.
+ * Load a text domain faster by caching the parsed .mo file data.
  *
- * @param bool|null   $loaded The result of loading a .mo file. Default null.
- * @param string      $domain Text domain. Unique identifier for retrieving translated strings.
- * @param string      $mofile Path to the MO file.
- * @param string|null $locale Locale.
+ * @param bool   $loaded Whether the text domain was loaded.
+ * @param string $domain Text domain. Unique identifier for retrieving translated strings.
+ * @param string $mofile Path to the .mo file.
+ * @param string $locale Optional. The locale to use. Default is null.
  *
- * @return bool True when textdomain is successfully loaded, false otherwise.
+ * @return bool Whether the text domain was loaded successfully.
  */
 function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 	global $l10n;
 
 	// Check if the .mo file is readable.
-	if ( ! is_readable( $mofile ) ) {
+	$hash = md5_file( $mofile );
+	if ( false === $hash ) {
+		// If the file is not readable, return false.
 		return false;
 	}
+
 	// Check if the data for the file is already in the transient cache.
-	$data  = ( ( is_multisite() ) ) ? get_site_transient( md5( $mofile ) ) : get_transient( md5( $mofile ) );
+	$data  = ( ( \is_multisite() ) ) ? \get_site_transient( $hash ) : \get_transient( $hash );
 	$mtime = filemtime( $mofile );
 
-	// If the data is not in the cache or if the file has been modified since the data was cached,
-	// import the .mo file and store the data in the cache.
-
 	// Create a new MO object.
-	$mo = new MO();
+	$mo = new \MO();
 
 	// Check if the data is already in the cache and if it is up-to-date.
 	if ( ! $data || ! isset( $data['mtime'] ) || $mtime > $data['mtime'] ) {
@@ -57,9 +60,9 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 
 		// Store the data in a transient with the MD5 hash of the .mo file path as the key.
 		if ( is_multisite() ) {
-			set_site_transient( md5( $mofile ), $data );
+			set_site_transient( $hash, $data );
 		} else {
-			set_transient( md5( $mofile ), $data );
+			set_transient( $hash, $data );
 		}
 	} else {
 		// If the data is already in the cache and the file has not been modified, retrieve the data from the cache.
@@ -77,4 +80,4 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 
 	return true;
 }
-add_filter( 'pre_load_textdomain', 'a_faster_load_textdomain', 1, 4 );
+\add_filter( 'pre_load_textdomain', __NAMESPACE__ . '\a_faster_load_textdomain', 1, 4 );
