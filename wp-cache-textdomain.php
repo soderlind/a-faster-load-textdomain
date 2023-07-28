@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 1.0.2
+ * Version: 1.0.3
  * Description: Cache the .mo file in a transient
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
