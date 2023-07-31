@@ -29,8 +29,8 @@ namespace Soderlind\Plugin\WP_Cache_Textdomain;
 function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 	global $l10n;
 
-	// Check if the .mo file is readable.
-	$hash = md5_file( $mofile );
+	// Create the hash.
+	$hash = md5_file( $mofile ); // Will return false if the file doesn't exist.
 	if ( false === $hash ) {
 		// If the file is not readable, return false.
 		return false;
