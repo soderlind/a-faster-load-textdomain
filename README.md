@@ -2,6 +2,8 @@
 
 This is a WordPress plugin that caches the `.mo` file in a transient to speed up the loading of text domains.
 
+> I wrote the [previous version](https://gist.github.com/soderlind/610a9b24dbf95a678c3e#file-a_faster_load_textdomain-php), of this plugin, 8 years ago. Still wayting for a faster `load_textdomain` in WordPress core.
+
 ## Prerequisites
 
 WordPress 6.3 or later, I'm using the [`pre_load_textdomain`](https://make.wordpress.org/core/2023/07/14/i18n-improvements-in-6-3/) filter.
