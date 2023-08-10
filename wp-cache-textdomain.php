@@ -105,7 +105,7 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 		// Export the data to a PHP file.
 		$val = var_export( $data, true ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_var_export
 
-		// Replace Translation_Entry with Lynt_Translation_Entry.
+		// Replace Translation_Entry with \Soderlind\Plugin\WP_Cache_Textdomain\Translation_Entry.
 		$val = str_replace( 'Translation_Entry::', '\Soderlind\Plugin\WP_Cache_Textdomain\Translation_Entry::', $val );
 
 		// Write the data to the cache file using WP_Filesystem if available, otherwise use file_put_contents.
