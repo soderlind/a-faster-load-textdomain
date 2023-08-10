@@ -1,37 +1,46 @@
 # A Faster load_textdomain
 
-This is a WordPress plugin that caches the `.mo` file in a transient to speed up the loading of text domains.
-
-> I wrote the [previous version](https://gist.github.com/soderlind/610a9b24dbf95a678c3e#file-a_faster_load_textdomain-php), of this plugin, 8 years ago. Still wayting for a faster `load_textdomain` in WordPress core.
-
-## Prerequisites
-
-WordPress 6.3 or later, I'm using the [`pre_load_textdomain`](https://make.wordpress.org/core/2023/07/14/i18n-improvements-in-6-3/) filter.
+This is a WordPress plugin that caches the .mo file as PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file. In theory, nothing is faster in PHP than loading and executing another PHP file.
 
 ## Installation
 
 1. Download the plugin files and extract `wp-cache-textdomain.php` to the `wp-content/mu-plugins` directory.
-2. Optional, add an object cache to your WordPress installation.
 
 ## Usage
 
-The plugin automatically caches the `.mo` file in a transient when it is loaded, and retrieves the cached data when the same file is loaded again. This speeds up the loading of text domains in WordPress.
+If you have a plugin or theme that loads a textdomain, e.g. `load_textdomain( 'textdomain', $path_to_mo_file )`, then this plugin will:
 
-## Frequently Asked Questions
+1. Look for a cached version of the .mo file in `wp-content/cache/wp-cache-textdomain/` directory.
+2. If the cached version exists, [include](https://www.php.net/manual/en/function.include.php) the cached version.
+3. If the cached version doesn't exist, load the .mo file, and save the file as PHP array in `wp-content/cache/wp-cache-textdomain/` directory.
 
-### How do I add an object cache?
+The localized PHP array can be cached via PHP OPcache.
 
-You can add an object cache by installing a caching plugin like
+## Changelog
 
-- [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/)
-- [Redis Object Cache](https://wordpress.org/plugins/redis-cache/)
-- [Object Cache Pro](https://objectcache.pro/)
+### 2.0.0
 
-I use Object Cache Pro, it's a premium plugin, but it's worth every penny.
+- Refactor code, instead of using a transient, save .mo file as PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file.
+
+### 1.0.3
+
+- Housekeeping.
+
+### 1.0.2
+
+- DRY (Don't Repeat Yourself) code. Add namespace.
+
+### 1.0.1
+
+- Add multisite support
+
+### 1.0.0
+
+- Initial release
 
 ## Credits
 
-This plugin is based on a patch by [nicofuma](https://core.trac.wordpress.org/ticket/32052).
+Orignal file: https://github.com/lynt-smitka/WP-nginx-config/blob/master/extras/mu-plugins/lynt-mo-cache.php
 
 ## Copyright and License
 
