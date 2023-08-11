@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: A faster load_textdomain
+ * Plugin Name: WP Cache Textdomain
  * Version: 2.0.0
  * Description: Cache the .mo file as PHP array, and load the array instead of the .mo file.
  * Author: Per Soderlind
