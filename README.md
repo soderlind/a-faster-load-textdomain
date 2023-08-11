@@ -4,19 +4,24 @@ This is a WordPress plugin that caches the .mo file as PHP array, and [include](
 
 ## Installation
 
-1. Download the plugin files and extract `wp-cache-textdomain.php` to the `wp-content/mu-plugins` directory.
+1. Download the plugin files and extract `a-faster-load-textdomain.php` to the `wp-content/mu-plugins` directory.
 
 ## Usage
 
 If you have a plugin or theme that loads a textdomain, e.g. `load_textdomain( 'textdomain', $path_to_mo_file )`, then this plugin will:
 
-1. Look for a cached version of the .mo file in `wp-content/cache/wp-cache-textdomain/` directory.
+1. Look for a cached version of the .mo file in `wp-content/cache/a-faster-load-textdomain/` directory.
 2. If the cached version exists, [include](https://www.php.net/manual/en/function.include.php) the cached version.
-3. If the cached version doesn't exist, load the .mo file, and save the file as PHP array in `wp-content/cache/wp-cache-textdomain/` directory.
+3. If the cached version doesn't exist, load the .mo file, and save the file as PHP array in `wp-content/cache/a-faster-load-textdomain/` directory.
 
 The localized PHP array can be cached via PHP OPcache. If you have PHP OPcache enabled, then the localized PHP array will be cached in memory, and the PHP file will not be parsed again.
 
 ## Changelog
+
+### 2.1.0
+
+- Rename namespace to `Soderlind\Plugin\A_Faster_Load_Textdomain`
+- Rename cache directory to `WP_CONTENT_DIR . '/cache/a-faster-load-textdomain'`
 
 ### 2.0.1
 

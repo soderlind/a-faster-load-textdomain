@@ -1,18 +1,18 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 2.0.0
+ * Version: 2.1.0
  * Description: Cache the .mo file as PHP array, and load the array instead of the .mo file.
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
- * Plugin URI: https://github.com/soderlind/wp-cache-textdomain
+ * Plugin URI: https://github.com/soderlind/a-faster-load-textdomain
  * License: GPLv2 or later
  *
- * @package wp-cache-textdomain
+ * @package a-faster-load-textdomain
  */
 
 declare( strict_types = 1 );
-namespace Soderlind\Plugin\WP_Cache_Textdomain;
+namespace Soderlind\Plugin\A_Faster_Load_Textdomain;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -25,7 +25,7 @@ if ( ! class_exists( 'WP_Filesystem' ) ) {
 /**
  * Translation_Entry class.
  *
- * @package wp-cache-textdomain
+ * @package a-faster-load-textdomain
  */
 class Translation_Entry extends \Translation_Entry {
 
@@ -70,7 +70,7 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 		return false;
 	}
 
-	$cache_path = WP_CONTENT_DIR . '/cache/wp-cache-textdomain';
+	$cache_path = WP_CONTENT_DIR . '/cache/a-faster-load-textdomain';
 	if ( ! file_exists( $cache_path ) ) {
 		mkdir( $cache_path, 0770, true );
 	}
@@ -105,8 +105,8 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 		// Export the data to a PHP file.
 		$val = var_export( $data, true ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_var_export
 
-		// Replace Translation_Entry with \Soderlind\Plugin\WP_Cache_Textdomain\Translation_Entry.
-		$val = str_replace( 'Translation_Entry::', '\Soderlind\Plugin\WP_Cache_Textdomain\Translation_Entry::', $val );
+		// Replace Translation_Entry with \Soderlind\Plugin\A_Faster_Load_Textdomain\Translation_Entry.
+		$val = str_replace( 'Translation_Entry::', '\Soderlind\Plugin\A_Faster_Load_Textdomain\Translation_Entry::', $val );
 
 		// Write the data to the cache file using WP_Filesystem if available, otherwise use file_put_contents.
 		if ( ! WP_Filesystem() ) {
