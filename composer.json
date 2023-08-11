@@ -1,7 +1,7 @@
 {
-	"name": "soderlind/wp-cache-textdomain",
+	"name": "soderlind/a-faster-load-textdomain",
 	"description": "A faster load_textdomain",
 	"type": "wordpress-plugin",
-	"homepage": "https://github.com/soderlind/wp-cache-textdomain",
+	"homepage": "https://github.com/soderlind/a-faster-load-textdomain",
 	"license": "GPL-2.0-or-later"
 }
