@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: PerS
-Tags: l10n, load_textdomain, cache, transient
+Tags: l10n, load_textdomain, cache, performance
 Requires at least: 5.9
 Tested up to: 6.3
 Stable tag: 2.0.0
