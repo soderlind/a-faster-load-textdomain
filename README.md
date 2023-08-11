@@ -1,6 +1,6 @@
 # A Faster load_textdomain
 
-This is a WordPress plugin that caches the .mo file as PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file. In theory, nothing is faster in PHP than loading and executing another PHP file.
+This is a WordPress plugin that caches the .mo file as an PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file. In theory, nothing is faster in PHP than loading and executing another PHP file.
 
 ## Installation
 
@@ -10,9 +10,9 @@ This is a WordPress plugin that caches the .mo file as PHP array, and [include](
 
 If you have a plugin or theme that loads a textdomain, e.g. `load_textdomain( 'textdomain', $path_to_mo_file )`, then this plugin will:
 
-1. Look for a cached version of the .mo file in `wp-content/cache/a-faster-load-textdomain/` directory.
-2. If the cached version exists, [include](https://www.php.net/manual/en/function.include.php) the cached version.
-3. If the cached version doesn't exist, load the .mo file, and save the file as PHP array in `wp-content/cache/a-faster-load-textdomain/` directory.
+1. Look for a PHP version of the .mo file in `WP_CONTENT_DIR . '/cache/a-faster-load-textdomain'` directory.
+2. If the PHP version exists, [include](https://www.php.net/manual/en/function.include.php) the file.
+3. If the PHP version doesn't exist, load the .mo file, and save the file as PHP array in `wp-content/cache/a-faster-load-textdomain/` directory.
 
 The localized PHP array can be cached via PHP OPcache. If you have PHP OPcache enabled, then the localized PHP array will be cached in memory, and the PHP file will not be parsed again.
 
