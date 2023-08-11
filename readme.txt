@@ -39,7 +39,7 @@ The localized PHP array can be cached via PHP OPcache. If you have PHP OPcache e
 * Rename file to `a-faster-load-textdomain.php` to follow WordPress plugin standards.
 
 = 2.0.0 =
-* Refactor code, instead of using a transient, save .mo file as PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file.
+* Refactor code, instead of using a transient, save .mo file as an PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file.
 
 = 1.0.3 =
 * Housekeeping.
