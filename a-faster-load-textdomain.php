@@ -2,7 +2,7 @@
 /**
  * Plugin Name: A faster load_textdomain
  * Version: 2.1.0
- * Description: Cache the .mo file as PHP array, and load the array instead of the .mo file.
+ * Description: Cache the .mo file as an PHP array, and load the array instead of the .mo file.
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
  * Plugin URI: https://github.com/soderlind/a-faster-load-textdomain
