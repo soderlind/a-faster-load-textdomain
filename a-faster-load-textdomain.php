@@ -65,17 +65,23 @@ class Translation_Entry extends \Translation_Entry {
  * @return bool Whether the text domain was loaded successfully.
  */
 function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
+	// Get the global $l10n variable.
 	global $l10n;
+
+	// Check if the .mo file is readable.
 	if ( ! is_readable( $mofile ) ) {
+		// If the file is not readable, return false.
 		return false;
 	}
 
+	// Set up the cache file path and directory.
 	$cache_path = WP_CONTENT_DIR . '/cache/a-faster-load-textdomain';
 	if ( ! file_exists( $cache_path ) ) {
 		mkdir( $cache_path, 0770, true );
 	}
 	$cache_file = sprintf( '%s/mo-%s.php', $cache_path, md5( $mofile ) );
 
+	// Check if the cache file exists and include it if it does.
 	if ( file_exists( $cache_file ) ) {
 		include $cache_file;
 		$data = isset( $val ) ? $val : false;
@@ -83,8 +89,10 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 		$data = false;
 	}
 
+	// Get the modification time of the .mo file.
 	$mtime = filemtime( $mofile );
 
+	// Create a new MO object.
 	$mo = new \MO();
 
 	// Check if $data is empty or if the mtime of the file is greater than the mtime in $data.
