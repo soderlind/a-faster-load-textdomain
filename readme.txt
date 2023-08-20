@@ -31,6 +31,9 @@ The localized PHP array can be cached via [PHP OPcache](http://blog.jpauli.tech/
 
 == Changelog ==
 
+= 2.1.1 =
+* Add `aflt_load_textdomain` filter.
+
 = 2.1.0 =
 * Rename namespace to `Soderlind\Plugin\A_Faster_Load_Textdomain`
 * Rename cache directory to `WP_CONTENT_DIR . '/cache/a-faster-load-textdomain'`
