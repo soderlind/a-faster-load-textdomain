@@ -27,6 +27,18 @@ If you have a plugin or theme that loads a textdomain, e.g. `load_textdomain( 't
 
 The localized PHP array can be cached via [PHP OPcache](http://blog.jpauli.tech/2015-03-05-opcache-html/). If you have PHP OPcache enabled, then the localized PHP array will be cached in memory, and the PHP file will not be parsed again.
 
+## Filters
+
+### `a_faster_load_textdomain_cache_path`
+
+Change the cache path, default is `WP_CONTENT_DIR . '/cache/a-faster-load-textdomain'`.
+
+```php
+add_filter( 'a_faster_load_textdomain_cache_path', function( $path ) {
+	return WP_CONTENT_DIR . '/cache/my-cache';
+} );
+```
+
 ## Changelog
 
 ### 2.1.0
