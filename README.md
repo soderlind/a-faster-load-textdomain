@@ -41,6 +41,10 @@ add_filter( 'a_faster_load_textdomain_cache_path', function( $path ) {
 
 ## Changelog
 
+### 2.1.1
+
+- Add filter `a_faster_load_textdomain_cache_path`
+
 ### 2.1.0
 
 - Rename namespace to `Soderlind\Plugin\A_Faster_Load_Textdomain`
