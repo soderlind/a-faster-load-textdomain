@@ -4,14 +4,14 @@ This is a WordPress plugin that caches the .mo file as an PHP array, and [includ
 
 ## Installation
 
-Either:
+Either (recommended):
 
 - Download the plugin files and extract `a-faster-load-textdomain.php` to the `wp-content/mu-plugins` directory.
 
 Or:
 
 - Download the plugin files and extract `a-faster-load-textdomain.php` to the `wp-content/plugins/a-faster-load-textdomain` directory.
-- Activate the plugin through the 'Plugins' screen in WordPress.
+- Activate the plugin through the 'Plugins' screen in WordPress. On a multisite, network activate the plugin.
 
 It's also possible to install the plugin via Composer:
 
