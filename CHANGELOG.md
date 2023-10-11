@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.1.3
+
+- Remove `mkdir()`
+
 ### 2.1.2
 
 - fail gracefully if `$cache_path` can't be created.
