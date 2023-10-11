@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.1.2
+
+- fail gracefully if `$cache_path` can't be created.
+
 ### 2.1.1
 
 - Add filter `a_faster_load_textdomain_cache_path`
