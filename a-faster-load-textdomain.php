@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 2.1.2
+ * Version: 2.1.3
  * Description: Cache the .mo file as an PHP array, and load the array instead of the .mo file.
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
@@ -77,7 +77,6 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 	// Set up the cache file path and directory.
 	$cache_path = \apply_filters( 'a_faster_load_textdomain_cache_path', WP_CONTENT_DIR . '/cache/a-faster-load-textdomain' ); 
 	if ( ! file_exists( $cache_path ) ) {
-		mkdir( $cache_path, 0770, true );
 		if ( ! \wp_mkdir_p( $cache_path ) ) {
 			return false; // fail gracefully if $cache_path can't be created.
 		}
