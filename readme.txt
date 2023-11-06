@@ -3,8 +3,8 @@ Contributors: PerS
 Tags: l10n, load_textdomain, cache, performance
 Requires at least: 5.9
 Requires PHP: 7.4
-Tested up to: 6.3
-Stable tag: 2.1.3
+Tested up to: 6.4
+Stable tag: 2.1.4
 Donate link: https://paypal.me/PerSoderlind
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -30,6 +30,10 @@ The localized PHP array can be cached via [PHP OPcache](http://blog.jpauli.tech/
 
 
 == Changelog ==
+
+= 2.1.4 =
+
+- Deploy with GitHub Actions to WordPress.org
 
 = 2.1.3 =
 
