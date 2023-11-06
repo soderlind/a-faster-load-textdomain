@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.1.4
+
+- Deploy with GitHub Actions to WordPress.org
+
 ### 2.1.3
 
 - Remove `mkdir()`
