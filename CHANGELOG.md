@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.1.5
+
+- Bump version to force deploy to WordPress.org
+
 ### 2.1.4
 
 - Deploy with GitHub Actions to WordPress.org
