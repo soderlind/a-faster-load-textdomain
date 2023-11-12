@@ -10,12 +10,12 @@ Either (recommended):
 
 Or:
 
-- Download the plugin files and extract `a-faster-load-textdomain.php` to the `wp-content/plugins/a-faster-load-textdomain` directory.
-- Activate the plugin through the 'Plugins' screen in WordPress. On a multisite, network activate the plugin.
+- Search for "[A faster load_textdomain](https://wordpress.org/plugins/a-faster-load-textdomain/)" and install with the WordPress plugin installer. 
+- (Network) Activate the plugin through the 'Plugins' menu in WordPress.
 
 It's also possible to install the plugin via Composer:
 
-- Install the plugin via Composer: `composer require soderlind/a-faster-load-textdomain`
+`composer require soderlind/a-faster-load-textdomain`
 
 ## How It Works
 
