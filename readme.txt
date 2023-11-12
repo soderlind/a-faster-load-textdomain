@@ -16,6 +16,8 @@ A faster load_textdomain
 This is a WordPress plugin that caches the .mo file as an PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file.
 In theory, nothing is faster in PHP than loading and executing another PHP file.
 
+= How it works =
+
 If you have a plugin or theme that loads a textdomain, e.g. `load_textdomain( 'textdomain', $path_to_mo_file )`, then this plugin will:
 
 1. Look for a PHP version of the .mo file in `WP_CONTENT_DIR . '/cache/a-faster-load-textdomain'` directory.
@@ -24,10 +26,30 @@ If you have a plugin or theme that loads a textdomain, e.g. `load_textdomain( 't
 
 The localized PHP array can be cached via [PHP OPcache](http://blog.jpauli.tech/2015-03-05-opcache-html/). If you have PHP OPcache enabled, then the localized PHP array will be cached in memory, and the PHP file will not be parsed again.
 
+= Filters =
+
+`a_faster_load_textdomain_cache_path`
+
+Change the cache path, default is `WP_CONTENT_DIR . '/cache/a-faster-load-textdomain'`.
+
+`
+add_filter( 'a_faster_load_textdomain_cache_path', function( $path ) {
+	return WP_CONTENT_DIR . '/cache/my-cache';
+} );
+`
+
 == Installation ==
 
-1. Download the plugin files and extract `a-faster-load-textdomain.php` to the `wp-content/mu-plugins` directory.
+Either (recommended):
+- Download the plugin files and extract `a-faster-load-textdomain.php` to the `wp-content/mu-plugins` directory.
 
+Or:
+- Search for "A faster load_textdomain" and install with the WordPress plugin installer. 
+- (Network) Activate the plugin through the 'Plugins' menu in WordPress.
+
+It's also possible to install the plugin via Composer:
+
+- Install the plugin via Composer: `composer require soderlind/a-faster-load-textdomain` 
 
 == Changelog ==
 
