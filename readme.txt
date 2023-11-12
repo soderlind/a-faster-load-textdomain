@@ -38,6 +38,11 @@ add_filter( 'a_faster_load_textdomain_cache_path', function( $path ) {
 } );
 `
 
+= GitHub =
+
+The plugin source is available at [GitHub](https://github.com/soderlind/a-faster-load-textdomain/blob/main/a-faster-load-textdomain.php)
+
+
 == Installation ==
 
 Either (recommended):
