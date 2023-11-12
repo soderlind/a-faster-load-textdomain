@@ -54,7 +54,7 @@ Or:
 
 It's also possible to install the plugin via Composer:
 
-- `composer require soderlind/a-faster-load-textdomain` 
+`composer require soderlind/a-faster-load-textdomain` 
 
 == Changelog ==
 
