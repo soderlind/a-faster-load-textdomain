@@ -58,6 +58,10 @@ It's also possible to install the plugin via Composer:
 
 == Changelog ==
 
+= 2.2.0 =
+
+* Refactor cache handler.
+
 = 2.1.5 =
 
 - Bump version to force deploy to WordPress.org
