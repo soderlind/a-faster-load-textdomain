@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 2.1.5
+ * Version: 2.2.0
  * Description: Cache the .mo file as an PHP array, and load the array instead of the .mo file.
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
@@ -22,37 +22,11 @@ if ( ! class_exists( 'WP_Filesystem' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/file.php';
 }
 
-/**
- * Translation_Entry class.
- *
- * @package a-faster-load-textdomain
- */
-class Translation_Entry extends \Translation_Entry {
-
-	/**
-	 * Constructor.
-	 *
-	 * @param array $args {
-	 *     Optional. Array of arguments for the translation entry.
-	 *
-	 *     @type string $singular Singular form of the string.
-	 *     @type string $plural   Plural form of the string.
-	 *     @type string $context  Context information for the translators.
-	 *     @type string $domain   Text domain. Unique identifier for retrieving translated strings.
-	 *     @type string $context  Context information for the translators.
-	 *     @type string $translations {
-	 *         Optional. Array of translations for different plural forms.
-	 *
-	 *         @type string $singular Singular form of the string.
-	 *         @type string $plural   Plural form of the string.
-	 *     }
-	 * }
-	 */
-	public static function __set_state( $args ) {
-		return new \Translation_Entry( $args );
-	}
+if ( ! \class_exists( 'AFLD_CacheHandler' ) ) {
+	require_once __DIR__ . '/includes/class-afld-cachehandler.php';
 }
 
+require_once __DIR__ . '/includes/class-translation-entry.php';
 
 /**
  * Load a text domain faster by caching the parsed .mo file data.
@@ -74,37 +48,18 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 		return false;
 	}
 
-	// Set up the cache file path and directory.
-	$cache_path = \apply_filters( 'a_faster_load_textdomain_cache_path', WP_CONTENT_DIR . '/cache/a-faster-load-textdomain' ); 
-	if ( ! file_exists( $cache_path ) ) {
-		if ( ! \wp_mkdir_p( $cache_path ) ) {
-			return false; // fail gracefully if $cache_path can't be created.
-		}
-	}
-	$cache_file = sprintf( '%s/mo-%s.php', $cache_path, md5( $mofile ) );
+	$cache_path    = apply_filters( 'a_faster_load_textdomain_cache_path', WP_CONTENT_DIR . '/cache/a-faster-load-textdomain' );
+	$cache_handler = new \AFLD_CacheHandler( $cache_path, 'mo' );
+	$data          = $cache_handler->get_cache_data( $mofile );
 
-	// Check if the cache file exists and include it if it does.
-	if ( file_exists( $cache_file ) ) {
-		include $cache_file;
-		$data = isset( $val ) ? $val : false;
-	} else {
-		$data = false;
-	}
-
-	// Get the modification time of the .mo file.
 	$mtime = filemtime( $mofile );
+	$mo    = new \MO();
 
-	// Create a new MO object.
-	$mo = new \MO();
-
-	// Check if $data is empty or if the mtime of the file is greater than the mtime in $data.
 	if ( ! $data || ! isset( $data['mtime'] ) || $mtime > $data['mtime'] ) {
-		// Import the translations from the MO file.
 		if ( ! $mo->import_from_file( $mofile ) ) {
 			return false;
 		}
 
-		// Create an array with the mtime, file, entries, and headers.
 		$data = [
 			'mtime'   => $mtime,
 			'file'    => $mofile,
@@ -112,21 +67,8 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 			'headers' => $mo->headers,
 		];
 
-		// Export the data to a PHP file.
-		$val = var_export( $data, true ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_var_export
-
-		// Replace Translation_Entry with \Soderlind\Plugin\A_Faster_Load_Textdomain\Translation_Entry.
-		$val = str_replace( 'Translation_Entry::', '\Soderlind\Plugin\A_Faster_Load_Textdomain\Translation_Entry::', $val );
-
-		// Write the data to the cache file using WP_Filesystem if available, otherwise use file_put_contents.
-		if ( ! WP_Filesystem() ) {
-			file_put_contents( $cache_file, '<?php $val = ' . $val . ';', LOCK_EX ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents
-		} else {
-			global $wp_filesystem;
-			$wp_filesystem->put_contents( $cache_file, '<?php $val = ' . $val . ';', FS_CHMOD_FILE );
-		}
+		$cache_handler->update_cache_data( $mofile, $data, __NAMESPACE__ . '\Translation_Entry' );
 	} else {
-		// If the data is already cached, use it.
 		$mo->entries = $data['entries'];
 		$mo->headers = $data['headers'];
 	}

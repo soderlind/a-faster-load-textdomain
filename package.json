@@ -1,0 +1,14 @@
+{
+	"name": "a-faster-load-textdomain",
+	"version": "2.2.0",
+	"description": "A faster load_textdomain",
+	"author": "Per Søderlind <per@soderlind.no>",
+	"license": "GPL-2.0-or-later",
+	"homepage": "https://github.com/soderlind/a-faster-load-textdomain",
+	"scripts": {
+		"bump": "wp-update-project-version -s package.json -p readme.txt  a-faster-load-textdomain.php"
+	},
+	"dependencies": {
+		"@soderlind/wp-project-version-sync": "^2.0.1"
+	}
+}
