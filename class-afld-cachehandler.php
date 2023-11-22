@@ -5,10 +5,11 @@
  * @package A_Faster_Load_Textdomain
  */
 
+namespace Soderlind\Plugin\A_Faster_Load_Textdomain;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
 
 
 /**
@@ -16,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Handles caching of data.
  */
-class CacheHandler {
+class AFLD_CacheHandler {
 	/**
 	 * Path to the cache directory.
 	 *
@@ -74,12 +75,13 @@ class CacheHandler {
 	 *
 	 * @param string $file Path to the file.
 	 * @param mixed  $data Data to cache.
+	 * @param string $str_class String class name.
 	 */
-	public function update_cache_data( $file, $data ) {
+	public function update_cache_data( $file, $data, $str_class = 'Translation_Entry' ) {
 		// Construct cache file path.
 		$cache_file = sprintf( '%s/%s-%s.php', $this->cache_path, $this->cache_file_prefix, md5( $file ) );
 		$val        = var_export( $data, true ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_var_export
-
+		$val        = str_replace( 'Translation_Entry::', sprintf( '\%s::', $str_class ), $val );
 		// Write data to cache file.
 		if ( ! WP_Filesystem() ) {
 			file_put_contents( $cache_file, '<?php $val = ' . $val . ';', LOCK_EX ); // phpcs:ignore

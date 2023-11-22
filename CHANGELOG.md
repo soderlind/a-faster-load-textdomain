@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.2.1
+
+- Fix bug in cache handler.
+
 ### 2.2.0
 
 - Refactor cache handler.
