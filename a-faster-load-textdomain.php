@@ -48,27 +48,40 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 		return false;
 	}
 
-	$cache_path    = apply_filters( 'a_faster_load_textdomain_cache_path', WP_CONTENT_DIR . '/cache/a-faster-load-textdomain' );
+	// Apply filter to get cache path, default is 'WP_CONTENT_DIR/cache/a-faster-load-textdomain'.
+	$cache_path = apply_filters( 'a_faster_load_textdomain_cache_path', WP_CONTENT_DIR . '/cache/a-faster-load-textdomain' );
+
+	// Create a new instance of the CacheHandler class.
 	$cache_handler = new \AFLD_CacheHandler( $cache_path, 'mo' );
-	$data          = $cache_handler->get_cache_data( $mofile );
 
+	// Get the cached data for the MO file.
+	$data = $cache_handler->get_cache_data( $mofile );
+
+	// Get the last modification time of the MO file.
 	$mtime = filemtime( $mofile );
-	$mo    = new \MO();
 
+	// Create a new instance of the MO class.
+	$mo = new \MO();
+
+	// If there's no cached data or the MO file has been modified since the last cache update...
 	if ( ! $data || ! isset( $data['mtime'] ) || $mtime > $data['mtime'] ) {
+		// ...try to import the MO file.
 		if ( ! $mo->import_from_file( $mofile ) ) {
 			return false;
 		}
 
+		// Prepare the data to be cached.
 		$data = [
-			'mtime'   => $mtime,
-			'file'    => $mofile,
-			'entries' => $mo->entries,
-			'headers' => $mo->headers,
+			'mtime'   => $mtime, // The last modification time of the MO file.
+			'file'    => $mofile, // The path to the MO file.
+			'entries' => $mo->entries, // The entries from the MO file.
+			'headers' => $mo->headers, // The headers from the MO file.
 		];
 
+		// Update the cached data.
 		$cache_handler->update_cache_data( $mofile, $data, __NAMESPACE__ . '\Translation_Entry' );
 	} else {
+		// If the cached data is up-to-date, use it to set the entries and headers of the MO object.
 		$mo->entries = $data['entries'];
 		$mo->headers = $data['headers'];
 	}
