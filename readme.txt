@@ -46,7 +46,7 @@ The plugin source is available at [GitHub](https://github.com/soderlind/a-faster
 == Installation ==
 
 Either (recommended):
-- Download the plugin files and extract `a-faster-load-textdomain.php` to the `wp-content/mu-plugins` directory.
+- Download the plugin files and extract `a-faster-load-textdomain.php` and `class-afld-cachehandler.php` to the `wp-content/mu-plugins` directory.
 
 Or:
 - Search for "A faster load_textdomain" and install with the WordPress plugin installer. 

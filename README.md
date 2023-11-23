@@ -6,7 +6,7 @@ This is a WordPress plugin that caches the .mo file as an PHP array, and [includ
 
 Either (recommended):
 
-- Download the plugin files and extract `a-faster-load-textdomain.php` to the `wp-content/mu-plugins` directory.
+- Download the plugin files and extract `a-faster-load-textdomain.php` and `class-afld-cachehandler.php` to the `wp-content/mu-plugins` directory.
 
 Or:
 
