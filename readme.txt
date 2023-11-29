@@ -4,7 +4,7 @@ Tags: l10n, load_textdomain, cache, performance
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.4
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 Donate link: https://paypal.me/PerSoderlind
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -57,6 +57,10 @@ It's also possible to install the plugin via Composer:
 `composer require soderlind/a-faster-load-textdomain` 
 
 == Changelog ==
+
+= 2.2.2 =
+
+* Add uninstall handler. Will remove the cache directory when the plugin is uninstalled.
 
 = 2.2.1 =
 
