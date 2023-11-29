@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.2.2
+
+- Add uninstall handler. Will remove the cache directory when the plugin is uninstalled.
+
 ### 2.2.1
 
 - Fix bug in cache handler.
