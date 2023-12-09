@@ -33,11 +33,39 @@ class AFLD_CacheHandler {
 	/**
 	 * CacheHandler constructor.
 	 *
-	 * @param string $cache_path Path to the cache directory.
+	 * @param string $cache_path        Path to the cache directory.
 	 * @param string $cache_file_prefix Prefix for cache files.
 	 */
 	public function __construct( $cache_path, $cache_file_prefix ) {
-		$this->cache_path        = $cache_path;
+		$this->set_cache_path( $cache_path );
+		$this->set_cache_file_prefix( $cache_file_prefix );
+	}
+
+	/**
+	 * Set the cache path.
+	 *
+	 * @param string $cache_path Path to the cache directory.
+	 * @throws \InvalidArgumentException If an invalid cache path is provided.
+	 */
+	private function set_cache_path( $cache_path ) {
+		if ( ! is_dir( $cache_path ) ) {
+			throw new \InvalidArgumentException( 'Invalid cache path provided' );
+		}
+
+		$this->cache_path = $cache_path;
+	}
+
+	/**
+	 * Set the cache file prefix.
+	 *
+	 * @param string $cache_file_prefix Prefix for cache files.
+	 * @throws \InvalidArgumentException If an invalid cache file prefix is provided.
+	 */
+	private function set_cache_file_prefix( $cache_file_prefix ) {
+		if ( empty( $cache_file_prefix ) ) {
+			throw new \InvalidArgumentException( 'Invalid cache file prefix provided' );
+		}
+
 		$this->cache_file_prefix = $cache_file_prefix;
 	}
 
