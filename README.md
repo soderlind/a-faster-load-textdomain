@@ -23,6 +23,17 @@ If you have a plugin or theme that loads a textdomain, e.g. `load_textdomain( 't
 2. If the PHP version exists, [include](https://www.php.net/manual/en/function.include.php) the file.
 3. If the PHP version doesn't exist, load the .mo file, and save the file as an PHP array in `wp-content/cache/a-faster-load-textdomain/` directory.
 
+
+```mermaid
+graph TD
+    A[Start] --> B{Look for PHP version of .mo file in cache directory}
+    B -->|Exists| C[Include the PHP file]
+    B -->|Doesn't Exist| D[Load the .mo file]
+    D --> E[Save the file as a PHP array in cache directory]
+    C --> F[End]
+    E --> F[End]
+```
+
 The localized PHP array can be cached via [PHP OPcache](http://blog.jpauli.tech/2015-03-05-opcache-html/). If you have PHP OPcache enabled, then the localized PHP array will be cached in memory, and the PHP file will not be parsed again.
 
 ## Filters
