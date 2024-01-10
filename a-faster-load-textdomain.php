@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 2.2.3
+ * Version: 2.2.4
  * Description: Cache the .mo file as an PHP array, and load the array instead of the .mo file.
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
@@ -53,6 +53,11 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 
 	// Create a new instance of the CacheHandler class.
 	$cache_handler = new \AFLD_CacheHandler( $cache_path, 'mo' );
+
+	if ( $cache_handler->failed ) {
+		// If the cache directory could not be created, return false.
+		return false;
+	}
 
 	// Get the cached data for the MO file.
 	$data = $cache_handler->get_cache_data( $mofile );
