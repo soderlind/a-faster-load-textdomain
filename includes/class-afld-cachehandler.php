@@ -16,6 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Handles caching of data.
  */
 class AFLD_CacheHandler {
+
+	/**
+	 * Whether the cache path could be created.
+	 *
+	 * @var bool
+	 */
+	public $failed = false;
+
 	/**
 	 * Path to the cache directory.
 	 *
@@ -45,12 +53,10 @@ class AFLD_CacheHandler {
 	 * Set the cache path.
 	 *
 	 * @param string $cache_path Path to the cache directory.
-	 * @throws \InvalidArgumentException If an invalid cache path is provided.
 	 */
 	private function set_cache_path( $cache_path ) {
-		if ( ! is_dir( $cache_path ) ) {
-			throw new \InvalidArgumentException( 'Invalid cache path provided' );
-		}
+		// Ensure cache directory exists.
+		$this->failed = ! wp_mkdir_p( $cache_path );
 
 		$this->cache_path = $cache_path;
 	}

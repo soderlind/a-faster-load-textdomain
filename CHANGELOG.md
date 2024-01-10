@@ -1,8 +1,17 @@
 ## Changelog
 
+### 2.2.4
+
+- Fail gracefully if  cache directory can't be created.
+
+### 2.2.3
+
+- Housekeeping
+
 ### 2.2.2
 
 - Add uninstall handler. Will remove the cache directory when the plugin is uninstalled.
+
 
 ### 2.2.1
 
