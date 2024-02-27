@@ -13,7 +13,7 @@ A faster load_textdomain
 
 == Description ==
 
->**NOTE** This plugin is not needed if you are running WordPress 6.5 or later, as the functionality is built into WordPress. If you need to generate translation in the new <code>.l10n.php</code> format, use the <a href="https://wordpress.org/plugins/performant-translations/">Performant Translations</a> plugin instead.
+>**NOTE** This plugin is not needed if you are running WordPress 6.5 or later, as the functionality [is built into WordPress core](https://make.wordpress.org/core/2024/02/27/i18n-improvements-6-5-performant-translations/). If you need to generate translation in the new <code>.l10n.php</code> format, use the <a href="https://wordpress.org/plugins/performant-translations/">Performant Translations</a> plugin instead.
 
 This is a WordPress plugin that caches the .mo file as an PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file.
 In theory, nothing is faster in PHP than loading and executing another PHP file.
