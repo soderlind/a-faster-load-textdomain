@@ -1,5 +1,7 @@
 # A Faster load_textdomain
 
+> **NOTE** This plugin is not needed if you are running WordPress 6.5 or later, as the functionality [is built into WordPress core](https://make.wordpress.org/core/2024/02/27/i18n-improvements-6-5-performant-translations/). If you need to generate translation in the new <code>.l10n.php</code> format, use the <a href="https://wordpress.org/plugins/performant-translations/">Performant Translations</a> plugin instead.
+
 This is a WordPress plugin that caches the .mo file as an PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file. In theory, nothing is faster in PHP than loading and executing another PHP file.
 
 ## Installation
@@ -10,7 +12,7 @@ Either (recommended):
 
 Or:
 
-- Search for "[A faster load_textdomain](https://wordpress.org/plugins/a-faster-load-textdomain/)" and install with the WordPress plugin installer. 
+- Search for "[A faster load_textdomain](https://wordpress.org/plugins/a-faster-load-textdomain/)" and install with the WordPress plugin installer.
 - (Network) Activate the plugin through the 'Plugins' menu in WordPress.
 
 It's also possible to install the plugin via Composer: `composer require soderlind/a-faster-load-textdomain`
@@ -22,7 +24,6 @@ If you have a plugin or theme that loads a textdomain, e.g. `load_textdomain( 't
 1. Look for a PHP version of the .mo file in `WP_CONTENT_DIR . '/cache/a-faster-load-textdomain'` directory.
 2. If the PHP version exists, [include](https://www.php.net/manual/en/function.include.php) the file.
 3. If the PHP version doesn't exist, load the .mo file, and save the file as an PHP array in `wp-content/cache/a-faster-load-textdomain/` directory.
-
 
 ```mermaid
 graph TD
