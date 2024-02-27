@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 2.2.4
+ * Version: 2.3.0
  * Description: Cache the .mo file as an PHP array, and load the array instead of the .mo file.
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
@@ -11,7 +11,7 @@
  * @package a-faster-load-textdomain
  */
 
-declare( strict_types = 1 );
+declare(strict_types=1);
 namespace Soderlind\Plugin\A_Faster_Load_Textdomain;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -76,7 +76,7 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 		}
 
 		// Prepare the data to be cached.
-		$data = [
+		$data = [ 
 			'mtime'   => $mtime, // The last modification time of the MO file.
 			'file'    => $mofile, // The path to the MO file.
 			'entries' => $mo->entries, // The entries from the MO file.
@@ -104,8 +104,20 @@ function a_faster_load_textdomain( $loaded, $domain, $mofile, $locale = null ) {
 }
 
 
+
 if ( version_compare( $GLOBALS['wp_version'], '6.3' ) >= 0 ) {
 	\add_filter( 'pre_load_textdomain', __NAMESPACE__ . '\a_faster_load_textdomain', 1, 4 );
 } else {
 	\add_filter( 'override_load_textdomain', __NAMESPACE__ . '\a_faster_load_textdomain', 0, 3 );
+}
+if ( version_compare( $GLOBALS['wp_version'], '6.5', '>=' ) ) {
+	//admin messages
+	\add_action( 'admin_notices', function () {
+		?>
+		<div class="notice notice-error">
+			<p><?php _e( '<strong>A faster load_textdomain</strong> is not needed in WordPress 6.5 and later, please deactivate the plugin.', 'a-faster-load-textdomain' ); ?></p>
+			<p><?php _e( 'The functionality is now <a href="https://make.wordpress.org/core/2024/02/27/i18n-improvements-6-5-performant-translations/">built into WordPress core</a>.', 'a-faster-load-textdomain' ); ?></p>
+			<p><?php _e( 'If you need to generate translation in the new <code>.l10n.php</code> format, use the <a href="https://wordpress.org/plugins/performant-translations/">Performant Translations</a> plugin', 'a-faster-load-textdomain' ); ?></p>
+		</div><?php
+	} );
 }

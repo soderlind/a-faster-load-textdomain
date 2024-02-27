@@ -1,6 +1,6 @@
 {
 	"name": "a-faster-load-textdomain",
-	"version": "2.2.4",
+	"version": "2.3.0",
 	"description": "A faster load_textdomain",
 	"author": "Per Søderlind <per@soderlind.no>",
 	"license": "GPL-2.0-or-later",

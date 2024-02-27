@@ -4,7 +4,7 @@ Tags: l10n, load_textdomain, cache, performance
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.4
-Stable tag: 2.2.4
+Stable tag: 2.3.0
 Donate link: https://paypal.me/PerSoderlind
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,6 +12,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 A faster load_textdomain
 
 == Description ==
+
+>**NOTE** This plugin is not needed if you are running WordPress 6.5 or later, as the functionality is built into WordPress. If you need to generate translation in the new <code>.l10n.php</code> format, use the <a href="https://wordpress.org/plugins/performant-translations/">Performant Translations</a> plugin instead.
 
 This is a WordPress plugin that caches the .mo file as an PHP array, and [include](https://www.php.net/manual/en/function.include.php) the array instead of the .mo file.
 In theory, nothing is faster in PHP than loading and executing another PHP file.
@@ -57,6 +59,10 @@ It's also possible to install the plugin via Composer:
 `composer require soderlind/a-faster-load-textdomain` 
 
 == Changelog ==
+
+= 2.3.0 =
+
+* If running WordPress 6.5, give a notice that the plugin is not needed.
 
 = 2.2.4 =
 
