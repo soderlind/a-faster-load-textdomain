@@ -94,12 +94,16 @@ class AFLD_CacheHandler {
 		$cache_file = sprintf( '%s/%s-%s.php', $this->cache_path, $this->cache_file_prefix, md5( $file ) );
 
 		// If cache file exists, include it and return the data.
-		if ( file_exists( $cache_file ) ) {
-			include $cache_file;
-			return isset( $val ) ? $val : false;
-		} else {
-			return false;
+		try {
+			if ( file_exists( $cache_file ) ) {
+				include $cache_file;
+			} else {
+				$val = false;
+			}
+		} catch ( Error $e ) { // If there's an error, return false.
+			$val = false;
 		}
+		return isset( $val ) ? $val : false;
 	}
 
 	/**
