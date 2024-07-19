@@ -53,6 +53,7 @@ class AFLD_CacheHandler {
 	 * Set the cache path.
 	 *
 	 * @param string $cache_path Path to the cache directory.
+	 * @return void
 	 */
 	private function set_cache_path( $cache_path ) {
 		// Ensure cache directory exists.
@@ -66,6 +67,7 @@ class AFLD_CacheHandler {
 	 *
 	 * @param string $cache_file_prefix Prefix for cache files.
 	 * @throws \InvalidArgumentException If an invalid cache file prefix is provided.
+	 * @return void
 	 */
 	private function set_cache_file_prefix( $cache_file_prefix ) {
 		if ( empty( $cache_file_prefix ) ) {
@@ -112,6 +114,7 @@ class AFLD_CacheHandler {
 	 * @param string $file Path to the file.
 	 * @param mixed  $data Data to cache.
 	 * @param string $str_class Translation_Entry class name.
+	 * @return void
 	 */
 	public function update_cache_data( $file, $data, $str_class = 'Translation_Entry' ) {
 		// Construct cache file path.

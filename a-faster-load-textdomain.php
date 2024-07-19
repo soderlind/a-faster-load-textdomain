@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: A faster load_textdomain
- * Version: 2.3.1
+ * Version: 2.3.2
  * Description: Cache the .mo file as an PHP array, and load the array instead of the .mo file.
  * Author: Per Soderlind
  * Author URI: https://soderlind.no
@@ -111,7 +111,7 @@ if ( version_compare( $GLOBALS['wp_version'], '6.3' ) >= 0 ) {
 	\add_filter( 'override_load_textdomain', __NAMESPACE__ . '\a_faster_load_textdomain', 0, 3 );
 }
 if ( version_compare( $GLOBALS['wp_version'], '6.5', '>=' ) ) {
-	// admin messages
+	// admin messages.
 	\add_action(
 		'admin_notices',
 		function () {
