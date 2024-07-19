@@ -1,5 +1,9 @@
 ## Changelog
 
+### 2.3.2
+
+- Housekeeping
+
 ### 2.3.1
 
 - Catch errors in the cache handler. If the cache file is corrupt, update the file and return the .mo file.

@@ -1,0 +1,7 @@
+parameters:
+	level: 6
+	paths:
+		- ./a-faster-load-textdomain.php
+		- includes
+	scanDirectories:
+		- ../../../wp-includes
